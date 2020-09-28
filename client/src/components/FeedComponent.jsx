@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import BigNewsCard from './BigNewsCard.jsx'
+// import SubjectSection from './SubjectSection.jsx'
 import { Grid, makeStyles, withStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,13 +12,15 @@ const useStyles = makeStyles((theme) => ({
    
 class FeedComponent extends Component {
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
+        console.log(this.props.feed)
         return (
             <div>
                 <Grid container>
                     <Grid item xs = {0}  sm={2}/>
-                    <Grid item xs = {12} sm={8} >
-                        <BigNewsCard className={classes.feedRoot} />                    
+                    <Grid item xs = {12} sm={8}>
+                        {this.props.feed.news.map(subject => <h1>{subject.category} </h1>)}
+                        {/* <SubjectSection/> */}
                     </Grid>
                     <Grid item xs = {0}  sm={2}/>
                 </Grid>

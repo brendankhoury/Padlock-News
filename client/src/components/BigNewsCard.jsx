@@ -31,10 +31,10 @@ export default function BigNewsCard(props) {
             <img alt={props.title + " image"} className={classes.articleImage} src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FgD4uACwPChA%2Fmaxresdefault.jpg"/>
             <div className={classes.articleDescription}>
               <Typography variant="h3">
-                Article title
+                Title: {props.articleTitle}
               </Typography>
               <Typography>
-                Initial content
+                Description: {props.articleDescription}
               </Typography>
             </div>
         </Card>

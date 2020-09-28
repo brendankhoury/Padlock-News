@@ -15,7 +15,7 @@ const theme = createMuiTheme({
 
 class App extends Component {
   render() {
-    var feed = new engine();
+    var feed = new engine().request_feed();
     // var text = JSON.stringify(feed.request_feed());
     return (
       <ThemeProvider theme={theme}>
