@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import engine from './personalization_engine/engine.js'
 import { createMuiTheme } from '@material-ui/core/styles';
-import { purple, deepPurple } from '@material-ui/core/colors';
+import { deepPurple } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/styles';
-import { AppBar, IconButton, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import FeedComponent from './components/FeedComponent.jsx';
 const theme = createMuiTheme({
   palette: {
     primary: deepPurple,
@@ -15,7 +16,7 @@ const theme = createMuiTheme({
 class App extends Component {
   render() {
     var feed = new engine();
-    var text = JSON.stringify(feed.request_feed());
+    // var text = JSON.stringify(feed.request_feed());
     return (
       <ThemeProvider theme={theme}>
         <AppBar align='center' position="static">
@@ -28,6 +29,7 @@ class App extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        <FeedComponent feed={feed}/>
       </ThemeProvider>
     );
   }
