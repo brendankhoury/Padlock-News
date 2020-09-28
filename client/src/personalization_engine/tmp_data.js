@@ -1,7 +1,7 @@
 const text = {
     "news": [
       {
-        "category": "top_news",
+        "category": "Top News",
         "articles": [
           {
             "title": "Top,News", 
@@ -30,7 +30,7 @@ const text = {
         ]
       },
       {
-        "category": "tech",
+        "category": "Technology",
         "articles": [
           {
             "title": "Top,tech", 
