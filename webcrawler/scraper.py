@@ -1,17 +1,22 @@
 import pymongo						## For connecting to MongoDB database
 import newspaper					## For getting article links off of news sites (has NLP capabilities)
 from newsplease import NewsPlease 	## For parsing articles from homepage of website
-import json
+import urllib.parse
 
 if __name__ == "__main__":
 
-	# Connect to primary MongoDB database
-	client = pymongo.MongoClient("mongodb+srv://zw1623:<password>@newscluster.po4ut.mongodb.net/<dbname>?retryWrites=true&w=majority")
-	db = client["newssite_test"]
-	col = db["articles"]
+	# Connect to MongoDB database
+	username = urllib.parse.quote_plus(input("Database username: "))
+	password = urllib.parse.quote_plus(input("Database password: "))
+	database = urllib.parse.quote_plus('newssite_test')
+
+	client = pymongo.MongoClient("mongodb+srv://%s:%s@newscluster.po4ut.mongodb.net/%s?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE" % (username, password, database))
+	db = client.newssite_test
+	col = db.articles
 
 	# Scrape data from random news site
-	sample_paper = newspaper.build("https://www.bbc.com/news")
+	site = input("Specify news site url to scrape: ")
+	sample_paper = newspaper.build(site)
 
 	# Extract and store articles from news site
 	extracted_articles = []
@@ -19,6 +24,7 @@ if __name__ == "__main__":
 		article = NewsPlease.from_url(url)
 		extracted_articles.append(article)
 
-	# Test database insertion
-	if (not extracted_articles):
+	# Test database insertion (FIX)
+	if (extracted_articles):
+		print("Inserting...")
 		inserted = col.insert_one(extracted_articles[0].__dict__)
