@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 // import SubjectSection from './SubjectSection.jsx'
 import { Grid, makeStyles, withStyles } from '@material-ui/core';
+import SubjectSection from './SubjectSection';
 
 const useStyles = makeStyles((theme) => ({
     feedRoot:{
@@ -17,12 +18,12 @@ class FeedComponent extends Component {
         return (
             <div>
                 <Grid container>
-                    <Grid item xs = {0}  sm={2}/>
-                    <Grid item xs = {12} sm={8}>
-                        {this.props.feed.news.map(subject => <h1>{subject.category} </h1>)}
+                    <Grid item xs = {0}  sm={1}/>
+                    <Grid item xs = {12} sm={10}>
+                        {this.props.feed.news.map(subject => <SubjectSection articles={subject.articles} category={subject.category}/>)}
                         {/* <SubjectSection/> */}
                     </Grid>
-                    <Grid item xs = {0}  sm={2}/>
+                    <Grid item xs = {0}  sm={1}/>
                 </Grid>
             </div>
         );
