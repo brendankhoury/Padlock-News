@@ -47,8 +47,7 @@ export default function SubjectSection(props) {
                             image={article.imageURL}
                             />
                     </Grid>)
-                }    
-
+                }
             </Grid>
         </div>
         
