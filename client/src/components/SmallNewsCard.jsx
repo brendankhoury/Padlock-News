@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
         // maxHeight:"30%"
     },
     root: {
-        marginTop: '10px'
+        marginTop: '0px',
+        flexGrow:1
     }
 }));
 
@@ -42,7 +43,7 @@ export default function SmallNewsCard(props) {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-            </Card>
+            </Card> 
         </div>
     )
 }

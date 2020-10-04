@@ -6,24 +6,23 @@ import SubjectSection from './SubjectSection';
 
 const useStyles = makeStyles((theme) => ({
     feedRoot:{
-        marginTop:"1000px",
-        // backgroundColor:"#555555"
+        flexGrow:1
     },
 }));
    
 class FeedComponent extends Component {
     render() {
-        // const { classes } = this.props;
+        const { classes } = this.props;
         console.log(this.props.feed)
         return (
-            <div>
+            <div className = {classes.feedRoot} >
                 <Grid container>
                     <Grid item xs = {0}  sm={1}/>
                     <Grid item xs = {12} sm={10}>
-                        {this.props.feed.news.map(subject => <SubjectSection articles={subject.articles} category={subject.category}/>)}
-                        {/* <SubjectSection/> */}
+                        {this.props.feed.news.map(subject => <SubjectSection articles={subject.articles} category={subject.category}/>)}                    
                     </Grid>
                     <Grid item xs = {0}  sm={1}/>
+
                 </Grid>
             </div>
         );
