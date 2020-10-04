@@ -1,1 +1,3 @@
 .vscode
+client/node_modules 
+# the above was added so that vscode wouldn't get confused by the number of files
