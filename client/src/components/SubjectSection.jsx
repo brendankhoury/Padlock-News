@@ -1,4 +1,4 @@
-import { Grid, Hidden, makeStyles } from '@material-ui/core'
+import { Grid, Hidden, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import BigNewsCard from './BigNewsCard'
 import SmallNewsCard from './SmallNewsCard'
@@ -17,38 +17,42 @@ export default function SubjectSection(props) {
     const classes = useStyles()
     return (
         <div className={classes.root}>
-            {/* Some sort of subject header up here, probably wrap the entire thing in a paper component*/}
-            <Grid container spacing={3}>
-                <Grid item xs={0}  sm={12}>
-                    {/* Article 1 (when the screen is bigger the big is used) */}
+            <div style = {{backgroundColor: props.themeColor}}>
+                <Typography variant="h2">Header</Typography>
+                <Grid container spacing={3}>
                     <Hidden xsDown>
-                        <BigNewsCard
+                        <Grid item sm={12}>
+                        {/* Article 1 (when the screen is bigger the big is used) */}
+                            <BigNewsCard
+                                    title={props.articles[0].title} 
+                                    summary={props.articles[0].summary}
+                                    image={props.articles[0].imageURL}
+                                    />
+                        </Grid>
+                    </Hidden>
+                    <Hidden smUp>
+                        <Grid item xs={12}>
+                            <SmallNewsCard
                                 title={props.articles[0].title} 
                                 summary={props.articles[0].summary}
                                 image={props.articles[0].imageURL}
                                 />
+                        {/* Article 1 (when the screen is small(xs) the small card is used) */}
+                        </Grid>
                     </Hidden>
+                    {props.articles.slice(1).map(article =>                 
+                        <Grid item xs={12} sm={4} key={article.id}>
+                            <SmallNewsCard
+                                title={article.title} 
+                                summary={article.summary}
+                                image={article.imageURL}
+                                
+                                />
+                        </Grid>)
+                    }
                 </Grid>
-                <Grid item xs={12} sm={0}>
-                    <Hidden smUp>
-                        <SmallNewsCard
-                            title={props.articles[0].title} 
-                            summary={props.articles[0].summary}
-                            image={props.articles[0].imageURL}
-                            />
-                    </Hidden>
-                    {/* Article 1 (when the screen is small(xs) the small card is used) */}
-                </Grid>
-                {props.articles.slice(1).map(article =>                 
-                    <Grid item xs={12} sm={4}>
-                        <SmallNewsCard
-                            title={article.title} 
-                            summary={article.summary}
-                            image={article.imageURL}
-                            />
-                    </Grid>)
-                }
-            </Grid>
+            </div   >
+
         </div>
         
     )

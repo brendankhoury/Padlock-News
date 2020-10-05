@@ -1,4 +1,4 @@
-import { Card, CardMedia, makeStyles, Typography } from '@material-ui/core'
+import { Card, CardActionArea, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles((theme) => ({
@@ -19,24 +19,26 @@ const useStyles = makeStyles((theme) => ({
     // minHeight: "100px",
     // maxHeight: "200px",
     borderRadius: "3px",
+    marginRight: "5px",
+    float:"left"
   },
   articleDescription: {
-    paddingLeft: "10px",
+    // marginLeft: "10px",
+    margin: "7px",
   },
 }));
 
 export default function BigNewsCard(props) {
   const classes = useStyles();
-  // TODO: Add image url support
   return (
     <Card className={classes.root}>
-      <CardMedia>
+      <CardActionArea>
         <img alt={props.title + " image"} className={classes.articleImage} src={props.image}/>
-      </CardMedia>
-      <div className={classes.articleDescription}>
-        <Typography variant="h3">{props.title}</Typography>
-        <Typography>{props.summary}</Typography>
-      </div>
+        <div className={classes.articleDescription}>
+          <Typography variant="h3">{props.title}</Typography>
+          <Typography>{props.summary}</Typography>
+        </div>  
+      </CardActionArea>
     </Card>
   )
 }

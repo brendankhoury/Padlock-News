@@ -2,6 +2,8 @@ const text = {
     "news": [
       {
         "category": "Top News",
+        "themeColor": "#dd5555",
+        "categoryId":"1",
         "articles": [
           {
             "title": "Top,News", 
@@ -35,6 +37,8 @@ const text = {
       },
       {
         "category": "Technology",
+        "themeColor": "#55dd55",
+        "categoryId":"2",
         "articles": [
           {
             "title": "Top,tech", 
@@ -68,6 +72,8 @@ const text = {
     },
     {
         "category": "Politics",
+        "themeColor": "#5555dd",
+        "categoryId":"3",
         "articles": [
           {
             "title": "Top,Politics", 
