@@ -2,7 +2,7 @@ const text = {
     "news": [
       {
         "category": "Top News",
-        "themeColor": "#dd5555",
+        "categoryColor": "#ddd9fc",
         "categoryId":"1",
         "articles": [
           {
@@ -37,7 +37,7 @@ const text = {
       },
       {
         "category": "Technology",
-        "themeColor": "#55dd55",
+        "categoryColor": "#bffcb5",
         "categoryId":"2",
         "articles": [
           {
@@ -72,7 +72,7 @@ const text = {
     },
     {
         "category": "Politics",
-        "themeColor": "#5555dd",
+        "categoryColor": "#fccab5",
         "categoryId":"3",
         "articles": [
           {

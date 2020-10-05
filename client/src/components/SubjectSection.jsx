@@ -3,22 +3,28 @@ import React from 'react'
 import BigNewsCard from './BigNewsCard'
 import SmallNewsCard from './SmallNewsCard'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow:1
-    },
-}));
+// const useStyles = 
 
 
 export default function SubjectSection(props) {
     // Props should have 4 articles in order of importance,
     // The top article will be displayed on a big card and the rest on small cards.
     console.log(props)
-    const classes = useStyles()
+    const classes = makeStyles((theme) => ({
+        root: {
+            flexGrow:1,
+            backgroundColor:props.categoryColor,
+            padding:"15px",
+            margin:"10px",
+            borderRadius:"8px",
+        },
+        
+    }))();
+    console.log(props.color )
     return (
         <div className={classes.root}>
-            <div style = {{backgroundColor: props.themeColor}}>
-                <Typography variant="h2">Header</Typography>
+            {/* <div backgroundColor={props.categoryColor} style = {{backgroundColor: props.categoryColor, padding:"10px"}}> */}
+                <Typography variant="h2">{props.category}</Typography>
                 <Grid container spacing={3}>
                     <Hidden xsDown>
                         <Grid item sm={12}>
@@ -51,7 +57,7 @@ export default function SubjectSection(props) {
                         </Grid>)
                     }
                 </Grid>
-            </div   >
+            {/* </div   > */}
 
         </div>
         

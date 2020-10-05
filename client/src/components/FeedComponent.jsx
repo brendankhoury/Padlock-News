@@ -17,7 +17,7 @@ class FeedComponent extends Component {
                 <Grid container>
                     <Grid item xs={0}  sm={1}/>
                     <Grid item xs={12} sm={10}>
-                        {this.props.feed.news.map(subject => <SubjectSection key={subject.categoryId}  color={subject.themeColor} articles={subject.articles} category={subject.category}/>)}                    
+                        {this.props.feed.news.map(subject => <SubjectSection key={subject.categoryId}  categoryColor={subject.categoryColor} articles={subject.articles} category={subject.category}/>)}                    
                     </Grid>
                     <Grid item xs={0}  sm={1}/>
                 </Grid>
