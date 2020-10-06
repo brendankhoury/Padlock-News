@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   articleImage: {
-    height:"250px",
+    height:"332px",
+    width:"500px",
     // minHeight: "100px",
     // maxHeight: "200px",
     borderRadius: "3px",
