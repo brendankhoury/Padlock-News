@@ -9,7 +9,6 @@ import SmallNewsCard from './SmallNewsCard'
 export default function SubjectSection(props) {
     // Props should have 4 articles in order of importance,
     // The top article will be displayed on a big card and the rest on small cards.
-    console.log(props)
     const classes = makeStyles((theme) => ({
         root: {
             flexGrow:1,
@@ -20,13 +19,12 @@ export default function SubjectSection(props) {
         },
         
     }))();
-    console.log(props.color )
     return (
         <div className={classes.root}>
             {/* <div backgroundColor={props.categoryColor} style = {{backgroundColor: props.categoryColor, padding:"10px"}}> */}
                 <Typography variant="h2">{props.category}</Typography>
                 <Grid container spacing={3}>
-                    <Hidden xsDown>
+                    <Hidden smDown>
                         <Grid item sm={12}>
                         {/* Article 1 (when the screen is bigger the big is used) */}
                             <BigNewsCard
@@ -36,7 +34,7 @@ export default function SubjectSection(props) {
                                     />
                         </Grid>
                     </Hidden>
-                    <Hidden smUp>
+                    <Hidden mdUp>
                         <Grid item xs={12}>
                             <SmallNewsCard
                                 title={props.articles[0].title} 

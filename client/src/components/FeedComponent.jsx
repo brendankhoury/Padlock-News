@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
 class FeedComponent extends Component {
     render() {
         const { classes } = this.props;
-        console.log(this.props.feed)
         return (
             <div className = {classes.feedRoot} >
                 <Grid container>
