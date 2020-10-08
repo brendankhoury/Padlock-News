@@ -5,21 +5,34 @@ import './index.css';
 import App from './App';
 import ArticleComponent from './components/ArticleComponent'
 import * as serviceWorker from './serviceWorker';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { deepPurple } from '@material-ui/core/colors';
+import { ThemeProvider } from '@material-ui/styles';
+import { AppBar, IconButton, Toolbar, Typography} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
-// Pre routing
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+const theme = createMuiTheme({
+  palette: {
+    primary: deepPurple,
+  },
+});
 
 const routing = (
   <Router>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/read" component={ArticleComponent} />
-    </div>
+    <ThemeProvider theme={theme}>
+        <AppBar align='center' position="static">
+          <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" > 
+              Padlock News
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Route exact path="/" component={App} />
+        <Route path="/read" component={ArticleComponent} />
+      </ThemeProvider>
   </Router>
 )
 
