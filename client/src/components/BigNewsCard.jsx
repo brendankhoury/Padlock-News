@@ -1,5 +1,6 @@
-import { Card, CardActionArea, makeStyles, Typography } from '@material-ui/core'
+import { Card, CardActionArea, Link, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,14 +33,16 @@ const useStyles = makeStyles((theme) => ({
 export default function BigNewsCard(props) {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <img alt={props.title + " image"} className={classes.articleImage} src={props.image}/>
-        <div className={classes.articleDescription}>
-          <Typography variant="h3">{props.title}</Typography>
-          <Typography>{props.summary}</Typography>
-        </div>  
-      </CardActionArea>
-    </Card>
+    <Link component={RouterLink} to={"/read?a=" + props.articleId}>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <img alt={props.title + " image"} className={classes.articleImage} src={props.image}/>
+          <div className={classes.articleDescription}>
+            <Typography variant="h3">{props.title}</Typography>
+            <Typography>{props.summary}</Typography>
+          </div>  
+        </CardActionArea>
+      </Card>
+    </Link>
   )
 }
