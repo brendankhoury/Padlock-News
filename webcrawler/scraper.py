@@ -1,9 +1,10 @@
-import pymongo						## For connecting to MongoDB database
-import newspaper					## For getting article links off of news sites (has NLP capabilities)
-import argparse
-import sys ## temporary
+import pymongo						# For connecting to MongoDB database
+import newspaper					# For getting article links off of news sites
+from newsplease import NewsPlease 	# For parsing articles from homepage of website
 import urllib.parse
-#from newsplease import NewsPlease 	## For parsing articles from homepage of website
+from urllib.error import HTTPError
+import argparse
+import sys # DEBUG (replace with argparse)
 
 if __name__ == "__main__":
 
@@ -24,20 +25,20 @@ if __name__ == "__main__":
 	col = db.articles
 
 	# Scrape data from random news site
-	homepage = newspaper.build(site, memoize_articles=False)
+	homepage = newspaper.build(site, memoize_articles=True)	# DEBUG (set to true to avoid duplicates)
 
 	# Download and parse articles
-	downloaded_articles = []
+	parsed_articles = []
 	for i in range(0, len(homepage.articles)):
-		dl_article = homepage.articles[i]
-		print(dl_article.url)
-		dl_article.download()
-		dl_article.parse()		
-		downloaded_articles.append(dl_article)
+		try:
+			article = NewsPlease.from_url(homepage.articles[i].url)
+		except HTTPError as e:	# If there is an issue downloading an article, skip it
+			continue
 
-	print(downloaded_articles[0].__dict__)
+		print(article.url) # DEBUG
+		parsed_articles.append(article.__dict__)
 
-	# Test database insertion (FIX)
-	# if (extracted_articles):
-	# 	print("Inserting...")
-	# 	inserted = col.insert_one(extracted_articles[0].__dict__)
+	# Insert articles into database
+	if (parsed_articles):
+		print("Inserting...") #DEBUG
+		inserted = col.insert_many(parsed_articles)
