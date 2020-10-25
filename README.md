@@ -9,13 +9,13 @@ are excited to begin development.
 
 ## Technologies
 
-MERN Stack
-	- MongoDB
-	- Express
-	- React
-	- NodeJS
-Blockstack/Gaia
-Python
+MERN Stack  
+- MongoDB  
+- Express  
+- React  
+- NodeJ  
+Blockstack/Gaia  
+Python  
 
 ## Roadmap
 
