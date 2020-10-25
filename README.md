@@ -14,6 +14,7 @@ MERN Stack
 - Express  
 - React  
 - NodeJ  
+<!-- end of the list -->
 Blockstack/Gaia  
 Python  
 
