@@ -22,12 +22,14 @@ client.connect();
 
 // return recent five articles
 app.get('/api/recentarticles', (req, res) => {
-  const sortedArticles = client.db("newssite_test").collection("articles")
-    .find().sort({ date_publish: -1});
-  const results = sortedArticles.toArray();
-  for (var count = 0; count < results.length && count < 5; count++) {
-    res.send(results[count]);
-  }
+  console.log("Call to /api/recentarticles made")
+  client.db("newssite_test").collection("articles")
+    .find()
+    .sort({ date_publish: -1})
+    .limit(5)
+    .toArray(function(err,docs) {
+      res.send(docs)
+    });
 });
     
 
