@@ -57,6 +57,7 @@ if __name__ == "__main__":
 			tries += 1
 
 	# Extract keywords from each article based on word frequency
+	print("DEBUG: Extracting keywords...")
 	for article in parsed_articles:
 		# Split aricle maintext to remove stopwords
 		tokens = [t for t in article["maintext"].split()]
@@ -78,11 +79,41 @@ if __name__ == "__main__":
 		for i in range(0,5):
 			article["keywords"].append(freq_pairs[i][0])
 
-	# Find category for article
-	# Use newspaper category_urls() as base?
+	# Get stripped version of news site base URL
+	stripped_url = args.site_url.replace("https://", "")
+	stripped_url = stripped_url.replace("www.", "")
+	stripped_url = stripped_url.replace('/','')
 
+	# Parse categories for articles based on URLs
+	print("DEBUG: Parsing categories...")
+	categories = []
+	for url in homepage.category_urls():
+		category = url
+		category = category.replace(args.site_url, "")	# Remove base URL
+		category = category.replace("https://", "")	# Remove HTTP string
+		category = category.replace("http://", "")
+		category = category.replace("www.", "")	# Remove www string
+		category = category.replace(stripped_url, "")	# Remove stripped base URL
+		category = category.replace('/','')
+		category = category.replace('.','')
+		if (category != "" and category != 'news'):
+			categories.append(category)
+	categories = list(dict.fromkeys(categories))	# Remove dupicate entries
+
+	# Label category for each article
+	for article in parsed_articles:
+		article['category'] = []
+		for category in categories:
+			if (category in parsed_articles["url"]):
+				article['category'].append(category)
 
 	# Insert articles into database
 	if (parsed_articles):
 		print("DEBUG: Inserting articles...") # DEBUG
 		inserted = col.insert_many(parsed_articles)
+
+'''
+ DEBUG NOTES:
+ - News site URLs currently must be in "https://www. ..." format for parsing to work correctly
+ - Might be some garbage in the categories list from improper parsing
+ '''
