@@ -13,6 +13,7 @@ import { AppBar, IconButton, Toolbar, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import {Connect} from '@blockstack/connect'
+import FeedComponent from './components/FeedComponent';
 
 
 const authOptions = {
@@ -51,7 +52,7 @@ const routing = (
               <Signin/>
             </Toolbar>
           </AppBar>
-          <Route exact path="/" component={App} />
+          <Route exact path="/" component={FeedComponent} />
           <Route path="/read" component={ArticleComponent} />
         </ThemeProvider>
     </Router>
