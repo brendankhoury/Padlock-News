@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const {MongoClient} = require('mongodb');
 const bodyParser = require('body-parser');
+const ObjectId = require('mongodb').ObjectId;
 require('dotenv/config');
 
 
@@ -22,19 +23,24 @@ client.connect();
 
 // return recent five articles
 app.get('/api/recentarticles', (req, res) => {
-  const sortedArticles = client.db("newssite_test").collection("articles")
-    .find().sort({ date_publish: -1});
-  const results = sortedArticles.toArray();
-  for (var count = 0; count < results.length && count < 5; count++) {
-    res.send(results[count]);
-  }
+  console.log("Call to /api/recentarticles made")
+  client.db("newssite_test").collection("articles")
+    .find()
+    .sort({ date_publish: -1})
+    .limit(5)
+    .toArray(function(err, docs) {
+      res.send(docs)
+    });
 });
     
 
 // return a specific article given the id
 app.get('/api/article/:id', (req, res) => {
-  const oneArticle = client.db("newssite_test").collection("articles").findOne({'_id':req.params.id});
-  res.send(oneArticle);
+  console.log("Call to /api/article/id made")
+  client.db("newssite_test").collection("articles")
+    .findOne({'_id':ObjectId(req.params.id)}, function(err, doc) {
+      res.send(doc)
+    });
 });
 
 
