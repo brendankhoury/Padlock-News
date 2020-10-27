@@ -13,7 +13,7 @@ MERN Stack
 - MongoDB  
 - Express  
 - React  
-- NodeJ  
+- NodeJS
 <!-- end of the list -->
 Blockstack/Gaia  
 Python  
@@ -21,3 +21,4 @@ Python
 ## Roadmap
 
 Project is still in initial development stage.
+We aim to have a minimum viable product by the end of 2020. 
