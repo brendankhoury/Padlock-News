@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-import { Grid, makeStyles, withStyles } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import SubjectSection from './SubjectSection';
+
+import '../assets/FeedComponent.css'
 
 import engine from '../personalization_engine/engine.js'
 
-
-const useStyles = makeStyles((theme) => ({
-    feedRoot:{
-        flexGrow:1
-    },
-}));
    
 class FeedComponent extends Component {
     constructor(props) {
@@ -17,10 +13,10 @@ class FeedComponent extends Component {
         this.state = {feed:new engine().request_feed()}
     }
     render() {
-        const { classes } = this.props;
-
+        // const { classes } = this.props;
+        // const classes = useStyles()
         return (
-            <div className = {classes.feedRoot} >
+            <div className="FeedRoot">
                 <Grid container>
                     <Grid item xs={0}  sm={1}/>
                     <Grid item xs={12} sm={10}>
@@ -34,5 +30,4 @@ class FeedComponent extends Component {
 
 }
 
-
-export default withStyles(useStyles)(FeedComponent)
+export default FeedComponent
