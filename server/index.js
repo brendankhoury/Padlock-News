@@ -27,7 +27,7 @@ app.get('/api/recentarticles', (req, res) => {
     .find()
     .sort({ date_publish: -1})
     .limit(5)
-    .toArray(function(err,docs) {
+    .toArray(function(err, docs) {
       res.send(docs)
     });
 });
