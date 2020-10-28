@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const {MongoClient} = require('mongodb');
 const bodyParser = require('body-parser');
+const ObjectId = require('mongodb').ObjectId;
 require('dotenv/config');
 
 
@@ -35,8 +36,11 @@ app.get('/api/recentarticles', (req, res) => {
 
 // return a specific article given the id
 app.get('/api/article/:id', (req, res) => {
-  const oneArticle = client.db("newssite_test").collection("articles").findOne({'_id':req.params.id});
-  res.send(oneArticle);
+  console.log("Call to /api/article/id made")
+  client.db("newssite_test").collection("articles")
+    .findOne({'_id':ObjectId(req.params.id)}, function(err, doc) {
+      res.send(doc)
+    });
 });
 
 
