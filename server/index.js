@@ -21,6 +21,18 @@ const client = new MongoClient(uri, { useNewUrlParser: true}, { useUnifiedTopolo
 client.connect();
 
 
+// return all the articles
+app.get('/api/feedAll', (req, res) => {
+  console.log("Call to /api/feedAll made")
+  client.db("newssite_test").collection("articles")
+    .find()
+    .project({ _id: 1, description: 1, image_url: 1, title: 1})
+    .toArray(function(err, docs) {
+      res.send(docs)
+    });
+});
+
+
 // return recent five articles
 app.get('/api/recentarticles', (req, res) => {
   console.log("Call to /api/recentarticles made")
@@ -28,6 +40,7 @@ app.get('/api/recentarticles', (req, res) => {
     .find()
     .sort({ date_publish: -1})
     .limit(5)
+    .project({ _id: 1, description: 1, image_url: 1, title: 1})
     .toArray(function(err, docs) {
       res.send(docs)
     });
