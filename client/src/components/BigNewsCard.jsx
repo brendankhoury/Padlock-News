@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 export default function BigNewsCard(props) {
   const classes = useStyles();
   return (
-    <Link component={RouterLink} to={"/read?a=" + props.articleId}>
+    <Link component={RouterLink} to={"/read?a=" + props.id}>
       <Card className={classes.root}>
         <CardActionArea>
           <img alt={props.title + " image"} className={classes.articleImage} src={props.image}/>

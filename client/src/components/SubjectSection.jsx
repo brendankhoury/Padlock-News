@@ -31,6 +31,7 @@ export default function SubjectSection(props) {
                                     title={props.articles[0].title} 
                                     summary={props.articles[0].summary}
                                     image={props.articles[0].image_url}
+                                    id={props.articles[0]._id}
                                     />
                         </Grid>
                     </Hidden>
@@ -40,6 +41,8 @@ export default function SubjectSection(props) {
                                 title={props.articles[0].title} 
                                 summary={props.articles[0].summary}
                                 image={props.articles[0].image_url}
+                                id={props.articles[0]._id}
+
                                 />
                         {/* Article 1 (when the screen is small(xs) the small card is used) */}
                         </Grid>
@@ -50,6 +53,8 @@ export default function SubjectSection(props) {
                                 title={article.title} 
                                 summary={article.summary}
                                 image={article.image_url}
+                                id={props.articles[0]._id}
+
                                 />
                         </Grid>)
                     }
