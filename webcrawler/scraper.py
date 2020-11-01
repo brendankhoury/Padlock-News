@@ -58,7 +58,7 @@ if __name__ == "__main__":
 		# Loop to download and parse articles
 		finished = False
 		tries = 0	# Limit number of re-download tries
-		not_downloaded = homepage.article_urls()
+		not_downloaded = list(set(homepage.article_urls()))
 		error_urls = []
 		parsed_articles = []
 		print("DEBUG: Downloading articles...") # DEBUG
