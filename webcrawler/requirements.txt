@@ -1,0 +1,4 @@
+news_please==1.5.3
+pymongo==3.11.0
+newspaper3k==0.2.8
+nltk==3.5
