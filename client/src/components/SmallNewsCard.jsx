@@ -19,7 +19,7 @@ export default function SmallNewsCard(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Link component={RouterLink} to={"/read?a=" + props.id}>
+            <Link component={RouterLink} to={"/read/" + props.id}>
                 <Card>
                     <CardActionArea>
                         <img alt={"Image for: " + props.title} className={classes.media} src={props.image}/>

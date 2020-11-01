@@ -29,7 +29,7 @@ export default function SubjectSection(props) {
                         {/* Article 1 (when the screen is bigger the big is used) */}
                             <BigNewsCard
                                     title={props.articles[0].title} 
-                                    summary={props.articles[0].summary}
+                                    summary={props.articles[0].description}
                                     image={props.articles[0].image_url}
                                     id={props.articles[0]._id}
                                     />
@@ -39,10 +39,9 @@ export default function SubjectSection(props) {
                         <Grid item xs={12}>
                             <SmallNewsCard
                                 title={props.articles[0].title} 
-                                summary={props.articles[0].summary}
+                                summary={props.articles[0].description}
                                 image={props.articles[0].image_url}
                                 id={props.articles[0]._id}
-
                                 />
                         {/* Article 1 (when the screen is small(xs) the small card is used) */}
                         </Grid>
@@ -51,9 +50,9 @@ export default function SubjectSection(props) {
                         <Grid item xs={12} sm={4} key={article.id}>
                             <SmallNewsCard
                                 title={article.title} 
-                                summary={article.summary}
+                                summary={article.description}
                                 image={article.image_url}
-                                id={props.articles[0]._id}
+                                id={article._id}
 
                                 />
                         </Grid>)

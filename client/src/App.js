@@ -87,7 +87,7 @@ class App extends Component {
               </Toolbar>
             </AppBar>
             <Route exact path="/" component={FeedComponent} />
-            <Route path="/read" component={ArticleComponent} />
+            <Route path="/read/:id" render={props => (<ArticleComponent id={props.match.params.id}/>)}/>
           </ThemeProvider>
         </Router>
       </Connect>

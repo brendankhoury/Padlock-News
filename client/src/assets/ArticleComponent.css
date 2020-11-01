@@ -1,0 +1,10 @@
+.FeedRoot {
+    flex-grow: 1;
+}
+.paragraph {
+    text-indent: 50px;
+    margin-top: 10px;
+}
+.article {
+    margin-top:10px;
+}
