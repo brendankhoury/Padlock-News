@@ -10,9 +10,9 @@ See the ```requirements.txt``` file for all dependencies that can be installed u
 0. Make sure all dependencies are installed on your machine.
 1. Store your MongoDB database credentials in environment variables using the following commands:
 	* For username: ```export DB_USR=your_username```
-	* For password: ```export DB_PWD=your_username```
+	* For password: ```export DB_PWD=your_password```
 2. Modify the ```sites.txt``` file so it contains the news sites you'd like to scrape. Make sure to follow the formatting for URLs shown in the file.
-3. Run the script from a terminal: ```python scraper.py```
+3. Run the script from your terminal: ```python scraper.py```
 
 ## Used Libraries
 These are the repositories for some of the libraries used to create this webcrawler:
