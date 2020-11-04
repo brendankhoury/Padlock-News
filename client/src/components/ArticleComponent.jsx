@@ -10,7 +10,7 @@ export default class ArticleComponent extends Component {
         super(props)
         // console.log(props.)
         // console.log(props.articleID)
-        new engine().requestArticle(props.id, (res) => this.updateArticleData(res))
+        engine.requestArticle(props.id, (res) => this.updateArticleData(res))
     }
     updateArticleData(article) {
         console.log("Article State Updated")

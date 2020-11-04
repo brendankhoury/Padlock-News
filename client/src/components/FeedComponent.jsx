@@ -13,7 +13,7 @@ class FeedComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {}
-        new engine().requestFeed((res) => this.updateFeed(res))
+        engine.requestFeed((res) => this.updateFeed(res))
     }
     componentDidMount() {
         // Haha, good luck getting this to work future me. Have to call async functions to load the feed. Consider some sort of callback to update the component when it occurs.
