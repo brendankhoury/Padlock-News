@@ -23,7 +23,12 @@ const engine = {
         }
     },
     setUserData(user) {
+        console.log("user" + String(user))
         userData = user
+    },
+    getUserData() {
+        console.log(userData)
+        return userData
     }
 }
 
