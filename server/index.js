@@ -47,6 +47,7 @@ app.get('/api/recentarticles', (req, res) => {
     .find()
     .sort({ date_publish: -1})
     .limit(5)
+    .project({ _id: 1, description: 1, image_url: 1, title: 1})
     .toArray(function(err, docs) {
       
       // create a category 
