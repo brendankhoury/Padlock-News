@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const {MongoClient} = require('mongodb');
 const bodyParser = require('body-parser');
 const ObjectId = require('mongodb').ObjectId;
@@ -8,7 +9,13 @@ require('dotenv/config');
 
 app.use(express.json());
 app.use(bodyParser.json());
-    
+app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});  
+
 
 app.get('/', (req, res) => {
   res.send('homepage');
@@ -21,6 +28,18 @@ const client = new MongoClient(uri, { useNewUrlParser: true}, { useUnifiedTopolo
 client.connect();
 
 
+// return all the articles
+app.get('/api/feedAll', (req, res) => {
+  console.log("Call to /api/feedAll made")
+  client.db("newssite_test").collection("articles")
+    .find()
+    .project({ _id: 1, description: 1, image_url: 1, title: 1})
+    .toArray(function(err, docs) {
+      res.send(docs)
+    });
+});
+
+
 // return recent five articles
 app.get('/api/recentarticles', (req, res) => {
   console.log("Call to /api/recentarticles made")
@@ -29,7 +48,36 @@ app.get('/api/recentarticles', (req, res) => {
     .sort({ date_publish: -1})
     .limit(5)
     .toArray(function(err, docs) {
-      res.send(docs)
+      
+      // create a category 
+      const allText = {}
+      const key = 'news';
+      allText[key] = [];
+      const data = {
+        category: 'Recent News',
+        catetoryColor: '#ddd9fc',
+        categoryId: 1,
+        articles: []
+      };
+
+      // add each article to its corresponding category
+      var i = 0;
+      var len = docs.length;
+      var text = "";
+      for (; i < len; i++) {
+        data.articles.push({
+          title: docs[i].title, 
+          id: docs[i]._id, 
+          imageURL: docs[i].image_url, 
+          summary: docs[i].description, 
+          contents: docs[i].maintext
+        });
+      }
+
+      // push category info to allText
+      allText[key].push(data);
+      JSON.stringify(allText);
+      res.send(allText)
     });
 });
     
