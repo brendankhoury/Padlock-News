@@ -47,7 +47,7 @@ app.get('/api/recentarticles', (req, res) => {
     .find()
     .sort({ date_publish: -1})
     .limit(5)
-    .project({ _id: 1, description: 1, image_url: 1, title: 1})
+    //.project({ _id: 1, description: 1, image_url: 1, title: 1})
     .toArray(function(err, docs) {
       
       // create a category 
@@ -64,8 +64,8 @@ app.get('/api/recentarticles', (req, res) => {
       // add each article to its corresponding category
       var i = 0;
       var len = docs.length;
-      var text = "";
       for (; i < len; i++) {
+        console.log(docs[i].description)
         data.articles.push({
           title: docs[i].title, 
           id: docs[i]._id, 
@@ -93,6 +93,37 @@ app.get('/api/article/:id', (req, res) => {
 });
 
 
+// return articles based on the given keywords
+app.get('/api/search', (req, res) => {
+  console.log("Call to /api/search made")
+  client.db("newssite_test").collection("articles")
+    .find()
+    .toArray(function(err, docs) {
+
+      // create an array to store search results and an array of requested keywords
+      matchArticles = [];
+      kw = req.query.keywords.split(',');
+
+      // go over each article and check if it corresponds to any given keywords
+      var i = 0;
+      var len1 = docs.length;
+      for (; i < len1; i++) {
+        var j = 0;
+        var len2 = kw.length;
+        for (; j < len2; j++) {
+
+          // push the article to matchArticles if its keyword array includes any given keywords
+          if (docs[i].keywords != null && docs[i].keywords.includes(kw[j])) {
+            matchArticles.push(docs[i]);
+            break;
+          }
+        }
+      }
+      res.send(matchArticles)
+    });
+});
+
+
 client.close();
 
 
@@ -100,4 +131,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}...`);
 });
-
