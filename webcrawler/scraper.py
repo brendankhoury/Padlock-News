@@ -69,6 +69,8 @@ if __name__ == "__main__":
 						continue
 					article = NewsPlease.from_url(not_downloaded[i])
 					print("\t" + article.url) # DEBUG
+					if (len(article.__dict__["maintext"]) < 500): # Skip super short articles
+						continue
 					parsed_articles.append(article.__dict__)
 				except (HTTPError, URLError) as e:	# If there is an issue downloading an article, store it for later
 					error_urls.append(not_downloaded)
