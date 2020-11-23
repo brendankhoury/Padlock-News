@@ -20,3 +20,11 @@ These are the repositories for some of the libraries used to create this webcraw
 * pymongo: https://github.com/mongodb/mongo-python-driver
 * newspaper: https://github.com/codelucas/newspaper
 * ntlk: https://github.com/nltk/nltk
+
+## Future Tasks
+These are features that could be added and tweaks that should be made to the webcrawler during later development:
+* Add timeout for article that take too long
+* Remove non-article sites (should be taken care of by memoization of previous scraped sites)
+* Improve article keyword parsing algorithm
+* Improve article categorization alrogithm
+* Have option to scrape articles for a specific day
