@@ -1,0 +1,8 @@
+# Lines beginning with hashtags are comments and will be ignored by the script
+
+# These are links to be read into the scraper script
+# (use URL formatting as "https://www.newssite.com\n")
+
+https://www.bbcnews.com
+https://www.usatoday.com
+https://www.cnn.com
