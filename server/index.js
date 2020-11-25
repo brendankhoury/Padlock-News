@@ -42,6 +42,7 @@ app.get('/api/feedAll', (req, res) => {
 });
 
 
+
 // return recent five articles
 app.get('/api/recentarticles', (req, res) => {
   console.log("Call to /api/recentarticles made")
@@ -49,40 +50,51 @@ app.get('/api/recentarticles', (req, res) => {
     .find()
     .sort({ date_publish: -1})
     .limit(5)
-    //.project({ _id: 1, description: 1, image_url: 1, title: 1})
     .toArray(function(err, docs) {
-      
-      // create a category 
-      const allText = {}
-      const key = 'news';
-      allText[key] = [];
-      const data = {
-        category: 'Recent News',
-        catetoryColor: '#ddd9fc',
-        categoryId: 1,
-        articles: []
-      };
-
-      // add each article to its corresponding category
-      var i = 0;
-      var len = docs.length;
-      for (; i < len; i++) {
-        console.log(docs[i].description)
-        data.articles.push({
-          title: docs[i].title, 
-          id: docs[i]._id, 
-          imageURL: docs[i].image_url, 
-          summary: docs[i].description, 
-          contents: docs[i].maintext
-        });
-      }
-
-      // push category info to allText
-      allText[key].push(data);
-      JSON.stringify(allText);
-      res.send(allText)
+      res.send(docs)
     });
 });
+// return recent five articles
+// app.get('/api/recentarticles', (req, res) => {
+//   console.log("Call to /api/recentarticles made")
+//   client.db("newssite_test").collection("articles")
+//     .find()
+//     .sort({ date_publish: -1})
+//     .limit(5)
+//     //.project({ _id: 1, description: 1, image_url: 1, title: 1})
+//     .toArray(function(err, docs) {
+      
+//       // create a category 
+//       const allText = {}
+//       const key = 'news';
+//       allText[key] = [];
+//       const data = {
+//         category: 'Recent News',
+//         catetoryColor: '#ddd9fc',
+//         categoryId: 1,
+//         articles: []
+//       };
+
+//       // add each article to its corresponding category
+//       var i = 0;
+//       var len = docs.length;
+//       for (; i < len; i++) {
+//         console.log(docs[i].description)
+//         data.articles.push({
+//           title: docs[i].title, 
+//           id: docs[i]._id, 
+//           imageURL: docs[i].image_url, 
+//           summary: docs[i].description, 
+//           contents: docs[i].maintext
+//         });
+//       }
+
+//       // push category info to allText
+//       allText[key].push(data);
+//       JSON.stringify(allText);
+//       res.send(allText)
+//     });
+// });
     
 
 // return a specific article given the id
