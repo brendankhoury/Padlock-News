@@ -47,7 +47,6 @@ app.get('/api/recentarticles', (req, res) => {
     .find()
     .sort({ date_publish: -1})
     .limit(5)
-    //.project({ _id: 1, description: 1, image_url: 1, title: 1})
     .toArray(function(err, docs) {
       
       // create a category 
@@ -65,7 +64,6 @@ app.get('/api/recentarticles', (req, res) => {
       var i = 0;
       var len = docs.length;
       for (; i < len; i++) {
-        console.log(docs[i].description)
         data.articles.push({
           title: docs[i].title, 
           id: docs[i]._id, 
@@ -107,13 +105,19 @@ app.get('/api/search', (req, res) => {
       // go over each article and check if it corresponds to any given keywords
       var i = 0;
       var len1 = docs.length;
+      var len2 = kw.length;
       for (; i < len1; i++) {
+
+        // skip the article that doesn't have keywords   
+        if (docs[i].keywords == null) {
+          continue;
+        }
+
         var j = 0;
-        var len2 = kw.length;
         for (; j < len2; j++) {
 
           // push the article to matchArticles if its keyword array includes any given keywords
-          if (docs[i].keywords != null && docs[i].keywords.includes(kw[j])) {
+          if (docs[i].keywords.includes(kw[j])) {
             matchArticles.push(docs[i]);
             break;
           }
